@@ -49,7 +49,7 @@ CONFIG_CC_STACKPROTECTOR_REGULAR=y
 CONFIG_PROCESS_RECLAIM=y
 CONFIG_PARTITION_ADVANCED=y
 CONFIG_IOSCHED_BFQ=y
-CONFIG_CGROUP_BFQIO=y
+# CONFIG_CGROUP_BFQIO is not set
 CONFIG_DEFAULT_NOOP=y
 CONFIG_ARCH_MSM=y
 CONFIG_ARCH_MSM8916=y
@@ -739,3 +739,23 @@ CONFIG_QCOM_VOWIFI_11R=y
 CONFIG_ENABLE_LINUX_REG=y
 CONFIG_WLAN_OFFLOAD_PACKETS=y
 CONFIG_QCOM_TDLS=y
+
+# eBPF, cgroup and PSI backport (from LeEco s2): what Android 13's
+# bpfloader, netd, TrafficController and lmkd expect from the kernel.
+CONFIG_BPF=y
+CONFIG_BPF_SYSCALL=y
+CONFIG_CGROUP_BPF=y
+CONFIG_CGROUP_PIDS=y
+CONFIG_KERNFS=y
+CONFIG_SOCK_CGROUP_DATA=y
+CONFIG_NETFILTER_XT_MATCH_BPF=y
+CONFIG_NET_CLS_BPF=y
+CONFIG_NET_ACT_BPF=y
+CONFIG_PSI=y
+# Report a 4.9 kernel to system_server, zygote, init and the BPF loaders
+# only (everything else, incl. /proc/version, sees the real 3.10): Android's
+# BPF loader then loads the program variants built for <= 4.9, whose
+# helpers this backport provides. Same values as LeEco's lineage_s2_defconfig.
+CONFIG_ANDROID_TREBLE_SPOOF_KERNEL_VERSION=y
+CONFIG_ANDROID_TREBLE_BYPASS_KERNEL_VERSION_CHECKS=y
+CONFIG_ANDROID_TREBLE_SPOOF_KERNEL_VERSION_PREFIX="4.9.337"
