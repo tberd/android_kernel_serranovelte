@@ -731,7 +731,6 @@ CONFIG_QCOM_VOWIFI_11R=y
 CONFIG_ENABLE_LINUX_REG=y
 CONFIG_WLAN_OFFLOAD_PACKETS=y
 CONFIG_QCOM_TDLS=y
-
 # eBPF, cgroup and PSI backport (from LeEco s2): what Android 13's
 # bpfloader, netd, TrafficController and lmkd expect from the kernel.
 CONFIG_BPF=y
